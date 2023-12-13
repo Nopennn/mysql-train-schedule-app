@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru" class="" m_init="2270459202211210919">
+
+<head>
+  <title>жд</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="layout">
+
+    <div class="content">
+      <div class="content__inner-wrap">
+
+        <div id="ufs-railway-schedule-app">
+
+          <div class="sch-content sch-content_schedule-page-inner">
+            <div class="sch-content__inner-wrap sch-content__inner-wrap_bordered">
+              <div class="sch-content__title sch-content__title_no-border">
+                <h1 class="sch-title sch-title_h1 sch-title_w_900 sch-title_color_dark">Промежуточные станции</h1></div>
+              <div class="sch-content__main sch-content__main_wide sch-schedule-table sch-schedule-table_trains">
+                <div class="sch-schedule-table__table-wrap">
+                  <table class="sch-schedule-table__table">
+                    <colgroup>
+                      <col>
+                        <col width="30%">
+                          <col width="30%">
+                    </colgroup>
+                    <tbody>
+                      <tr class="sch-schedule-table__tr sch-schedule-table__table-header">
+                        <th class="sch-schedule-table__th">Станция<br class="sch-visible-tablet"><span class="sch-visible-tablet">Время</span></th>
+                        <th class="sch-schedule-table__th sch-invisible-tablet">Время</th>
+                        <th class="sch-schedule-table__th sch-invisible-mobile-small">Время в пути</th>
+                        <th class="sch-schedule-table__th sch-invisible-mobile-small sch-schedule-table__traffic-cell">Дата</th>
+                      </tr>
+
+                      {% for item in way %}
+
+<tr class="sch-schedule-table__tr">
+  <td class="sch-schedule-table__td">
+    <div class="sch-schedule-table__time"><span class="sch-schedule-table__cell-label">Станция</span><span class="sch-schedule-table__number">{{item[0]}}</span></div>
+  </td>
+  <td class="sch-schedule-table__td">
+    <div class="sch-schedule-table__time"><span class="sch-schedule-table__cell-label">Время</span><span class="sch-schedule-table__number">{{item[1]}}</span></div>
+  </td>
+  <td class="sch-schedule-table__td">
+    <div class="sch-schedule-table__time"><span class="sch-schedule-table__cell-label">Время в пути</span><span class="sch-schedule-table__number">{{item[2]}}</span></div>
+  </td>
+  <td class="sch-schedule-table__td">
+    <div class="sch-schedule-table__time"><span class="sch-schedule-table__cell-label">Дата</span><span class="sch-schedule-table__number">{{item[3]}}</span></div>
+  </td>
+
+</tr>
+
+
+                      {% endfor %}
+
+
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

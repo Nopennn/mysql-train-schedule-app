@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru" class="" m_init="2270459202211210919">
+
+<head>
+<title>жд</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+  <div class="layout">
+
+    <div class="content">
+      <div class="content__inner-wrap">
+
+        <div id="ufs-railway-schedule-app">
+          <div class="sch-schedule-form">
+            <div class="sch-schedule-form__inner">
+              <div class="sch-search sch-search_schedule">
+                <form class="sch-search__form" method = "GET">
+                  <h1 class="sch-search__title">Расписание поездов</h1>
+                  <div class="sch-search__options">
+                    <div class="sch-search__radio-set sch-search__radio-set_inline">
+                      <label class="sch-radio sch-radio_dark-bg sch-search__radio-item">
+                        <input type="radio" name="search_type" class = "way" onclick=
+
+                          'document.getElementById("forms").innerHTML =   `
+  <div class="sch-search__col-wrap sch-search__col-wrap_cols4">
+    <div class="sch-search__col">
+      <div class="sch-search__row">
+        <div class="sch-search__label">Откуда</div>
+        <div role="combobox" aria-haspopup="listbox" aria-owns="react-autowhatever-1" aria-expanded="false">
+
+          <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="react-autowhatever-1" class="sch-search__input sch-search__input_wide autocomplete" placeholder="Откуда" name = "from_" value=" {{ request.args.get("from_", "") }}">
+
+          <div id="react-autowhatever-1" role="listbox" class="sch-autocomplete sch-search__input-dialog"></div>
+        </div>
+    <div class="sch-icon sch-icon_switch sch-search__switch">&nbsp;</div>
+      </div>
+    </div>
+    <div class="sch-search__col">
+      <div class="sch-search__row">
+        <div class="sch-search__label">Куда</div>
+        <div role="combobox" aria-haspopup="listbox" aria-owns="react-autowhatever-1" aria-expanded="false">
+
+          <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="react-autowhatever-1" class="sch-search__input sch-search__input_wide t_arrival_place" placeholder="Куда" name = "to_" value=" {{ request.args.get("to_", "") }}">
+
+          <div id="react-autowhatever-1" role="listbox" class="sch-autocomplete sch-search__input-dialog"></div>
+        </div>
+  </div>
+    </div>
+    <div class="sch-search__col sch-search__col_schedule-date">
+      <div class="sch-search__row">
+        <div class="sch-search__label">Дата</div>
+        <div>
+          <div>
+
+            <input type="text" data-field="" class="sch-search__input sch-search__input_wide" placeholder="Дата" name = "date_" value=" {{ request.args.get("date_", "") }}">
+
+                          <span class="sch-icon sch-icon_calendar sch-search__calendar-icon"></span></div>
+        </div>
+  </div>
+    </div>
+    <div class="sch-search__col sch-search__col_submit">
+      <div class="sch-search__row">
+        <div class="sch-search__label">&nbsp;</div>
+        <button type = "submit" class="sch-button">Найти</button>
+      </div>
+    </div>
+</div>`'
+                          ><span class="sch-radio__button">&nbsp;</span><span class="sch-radio__label">По маршруту</span></label>
+                      <label class="sch-radio sch-radio_dark-bg sch-search__radio-item">
+                        <input type="radio" name="search_type" checked=""onclick=
+
+                          '  document.getElementById("forms").innerHTML = `
+
+  <div class="sch-search__col-wrap sch-search__col-wrap_cols3">
+    <div class="sch-search__col">
+      <div class="sch-search__row">
+        <div class="sch-search__label">Название станции</div>
+        <div role="combobox" aria-haspopup="listbox" aria-owns="react-autowhatever-1" aria-expanded="false">
+
+          <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="react-autowhatever-1" class="sch-search__input sch-search__input_wide t_depart_place" placeholder="" name = "station_" value=" {{ request.args.get("station_", "") }}">
+
+          <div id="react-autowhatever-1" role="listbox" class="sch-autocomplete sch-search__input-dialog"></div>
+        </div>
+          </div>
+    </div>
+    <div class="sch-search__col sch-search__col_schedule-date">
+      <div class="sch-search__row">
+        <div class="sch-search__label">Дата</div>
+        <div>
+          <div>
+
+            <input type="text" data-field="" class="sch-search__input sch-search__input_wide" placeholder="Дата" name = "date_" value=" {{ request.args.get("date_", "") }}">
+
+                          <span class="sch-icon sch-icon_calendar sch-search__calendar-icon"></span></div>
+        </div>
+          </div>
+    </div>
+    <div class="sch-search__col">
+      <div class="sch-search__row">
+        <div class="sch-search__label">&nbsp;</div>
+        <button type = "submit" class="sch-button">Найти</button>
+        <div class="sch-search__row"></div>
+      </div>
+    </div>
+  </div>
+  `'
+                          ><span class="sch-radio__button">&nbsp;</span><span class="sch-radio__label">По станции</span></label>
+                      <label class="sch-radio sch-radio_dark-bg sch-search__radio-item">
+                        <input type="radio" name="search_type" onclick=
+
+                          'document.getElementById("forms").innerHTML =
+  `
+  <div class="sch-search__col-wrap sch-search__col-wrap_cols3">
+    <div class="sch-search__col">
+      <div class="sch-search__row">
+        <div class="sch-search__label">Номер или название поезда</div>
+        <div role="combobox" aria-haspopup="listbox" aria-owns="react-autowhatever-1" aria-expanded="false">
+
+          <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="react-autowhatever-1" class="sch-search__input sch-search__input_wide t_depart_place" placeholder="" name = "number_" value=" {{ request.args.get("number_", "") }}"">
+
+          <div id="react-autowhatever-1" role="listbox" class="sch-autocomplete sch-search__input-dialog"></div>
+        </div>
+      </div>
+    </div>
+    <div class="sch-search__col sch-search__col_schedule-date">
+      <div class="sch-search__row">
+        <div class="sch-search__label">Дата</div>
+        <div>
+          <div>
+
+            <input  type="text" data-field="" class="sch-search__input sch-search__input_wide" placeholder="Дата" name = "date_" value=" {{ request.args.get("date_", "") }}">
+
+                          <span class="sch-icon sch-icon_calendar sch-search__calendar-icon"></span></div>
+        </div>
+         </div>
+    </div>
+    <div class="sch-search__col">
+      <div class="sch-search__row">
+        <div class="sch-search__label">&nbsp;</div>
+        <button class="sch-button">Найти</button>
+      </div>
+    </div>
+  </div>`'
+                          ><span class="sch-radio__button">&nbsp;</span><span class="sch-radio__label">По номеру или названию поезда</span></label>
+                    </div>
+                  </div>
+                  <div class="sch-search__inner" id = "forms">
+                    <div class="sch-search__col-wrap sch-search__col-wrap_cols3">
+                      <div class="sch-search__col">
+                        <div class="sch-search__row">
+                          <div class="sch-search__label">Название станции</div>
+                          <div role="combobox" aria-haspopup="listbox" aria-owns="react-autowhatever-1" aria-expanded="false">
+                            <input type="text" autocomplete="off" aria-autocomplete="list" aria-controls="react-autowhatever-1" class="sch-search__input sch-search__input_wide t_depart_place" placeholder="">
+                            <div id="react-autowhatever-1" role="listbox" class="sch-autocomplete sch-search__input-dialog"></div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="sch-search__col sch-search__col_schedule-date">
+                        <div class="sch-search__row">
+                          <div class="sch-search__label">Дата</div>
+                          <div>
+                            <div>
+                              <input type="text" data-field="" class="sch-search__input sch-search__input_wide" placeholder="Дата" value=""><span class="sch-icon sch-icon_calendar sch-search__calendar-icon"></span></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sch-search__col">
+                        <div class="sch-search__row">
+                          <div class="sch-search__label">&nbsp;</div>
+                          <button class="sch-button">Найти</button>
+                          <div class="sch-search__row"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="sch-content sch-content_schedule-page-inner">
+            <div class="sch-content__inner-wrap sch-content__inner-wrap_bordered">
+              <div class="sch-content__title sch-content__title_no-border">
+                <h1 class="sch-title sch-title_h1 sch-title_w_900 sch-title_color_dark">Расписание поездов<!-- --> <!-- --></h1></div>
+              <div class="sch-content__main sch-content__main_wide sch-schedule-table sch-schedule-table_trains">
+                <div class="sch-schedule-table__table-wrap">
+                  <table class="sch-schedule-table__table">
+                    <colgroup>
+                      <col>
+                        <col width="20%">
+                          <col width="20%">
+                    </colgroup>
+                    <tbody>
+                      <tr class="sch-schedule-table__tr sch-schedule-table__table-header">
+                        <th class="sch-schedule-table__th">Поезд
+                          <br class="sch-visible-tablet"><span class="sch-visible-tablet">Маршрут</span></th>
+                        <th class="sch-schedule-table__th sch-invisible-tablet">Маршрут</th>
+                        <th class="sch-schedule-table__th sch-invisible-mobile-small">Отправление</th>
+                        <th class="sch-schedule-table__th sch-invisible-mobile-small">Прибытие</th>
+
+                      </tr>
+
+                      {% for item in bd %}
+
+<tr class="sch-schedule-table__tr">
+  <td class="sch-schedule-table__td name-cell">
+    <h3><span class="sch-schedule-table__name"><a href="{{ url_for('way', number=item[2])}}" class="sch-schedule-table__name-link">{{item[2]}}</a></span></h3>
+    <div class="sch-visible-tablet">
+      <div>{{item[0]}}
+        <!-- -->—
+        <!-- -->{{item[1]}}</div><small><a target="_blank" rel="noopener noreferrer" href="{{ url_for('way', number=item[2])}}" class="sch-schedule-table__link">Маршрут</a></small></div>
+  </td>
+  <td class="sch-schedule-table__td sch-invisible-tablet">
+    <div>{{item[0]}}
+      <!-- -->—
+      <!-- -->{{item[1]}}</div><small><a target="_blank" rel="noopener noreferrer" href="{{ url_for('way', number=item[2])}}" class="sch-schedule-table__link">Маршрут</a></small></td>
+  <td class="sch-schedule-table__td">
+    <div class="sch-schedule-table__time"><span class="sch-schedule-table__cell-label">Отправление</span><span class="sch-schedule-table__number">{{item[3]}}</span></div>
+  </td>
+  <td class="sch-schedule-table__td">
+    <div class="sch-schedule-table__time"><span class="sch-schedule-table__cell-label">Прибытие</span><span class="sch-schedule-table__number">{{item[4]}}</span></div>
+  </td>
+</tr>
+
+                      {% endfor %}
+
+
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
